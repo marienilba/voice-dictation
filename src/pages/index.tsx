@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { Dictaphone } from "./components/Dictaphone";
-import { Editor } from "./components/Editor";
+import { Editor } from "../components/Editor";
 
 const Index: NextPage = () => {
   return (
@@ -17,7 +16,6 @@ const Index: NextPage = () => {
 
       <div className="w-full h-full flex flex-col justify-center items-center">
         <Editor />
-        {/* <Dictaphone /> */}
       </div>
 
       <footer></footer>
