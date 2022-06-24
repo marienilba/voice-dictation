@@ -56,7 +56,7 @@ export function Editor() {
           <div className="bg-gray-200 rounded-lg relative h-[400px]  ">
             <RichTextPlugin
               contentEditable={
-                <ContentEditable className="min-h-[150px] border-transparent focus:border-transparent focus:ring-0 max-h-[400px] overflow-auto h-max resize-none text-base caret-black relative outline-0 pt-3.5 px-2.5" />
+                <ContentEditable className="min-h-[150px]  border-transparent focus:outline-none  focus:border-transparent max-h-[400px] overflow-auto h-max resize-none text-base caret-black relative  pt-3.5 px-2.5" />
               }
               placeholder={
                 <div className="tex-black opacity-50 overflow-hidden absolute text-ellipsis top-4 left-2.5 text-base select-none inline-block pointer-events-none">
