@@ -25,10 +25,11 @@ const Index: NextPage = () => {
             src="/images/logos/GitHub.png"
             width="24px"
             height="24px"
-            // layout="responsive"
+            alt="Github Logo"
           />
           <a
             target="_blank"
+            rel="noreferrer"
             href={"https://github.com/maelnilba/next-voice-dictation"}
           >
             Github
