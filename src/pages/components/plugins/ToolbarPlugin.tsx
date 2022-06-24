@@ -629,7 +629,7 @@ export default function ToolbarPlugin({ lang }: { lang?: string }) {
       });
       resetTranscript();
     }
-  }, [interimTranscript, finalTranscript]);
+  }, [interimTranscript, finalTranscript, resetTranscript, editor]);
 
   const listenContinuously = async () => {
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {

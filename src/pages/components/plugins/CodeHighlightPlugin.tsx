@@ -8,5 +8,5 @@ export default function CodeHighlightPlugin() {
   useEffect(() => {
     return registerCodeHighlighting(editor);
   }, [editor]);
-  return null;
+  return <></>;
 }

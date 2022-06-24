@@ -27,5 +27,5 @@ export function AutoFocusPlugin() {
     // });
   }, [editor]);
 
-  return null;
+  return <></>;
 }

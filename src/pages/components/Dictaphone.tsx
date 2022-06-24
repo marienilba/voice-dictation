@@ -33,7 +33,7 @@ export const Dictaphone = () => {
       setRetranscriptions((prev) => [...prev, finalTranscript]);
       resetTranscript();
     }
-  }, [interimTranscript, finalTranscript]);
+  }, [interimTranscript, finalTranscript, resetTranscript]);
 
   const listenContinuously = async () => {
     if (!SpeechRecognition.browserSupportsSpeechRecognition()) {

@@ -72,5 +72,5 @@ export default function ListMaxIndentLevelPlugin({
     );
   }, [editor, maxDepth]);
 
-  return null;
+  return <></>;
 }
