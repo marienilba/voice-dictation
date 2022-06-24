@@ -616,6 +616,8 @@ export default function ToolbarPlugin({ lang }: { lang?: string }) {
     finalTranscript,
     resetTranscript,
     listening,
+    isMicrophoneAvailable,
+    browserSupportsSpeechRecognition,
   } = useSpeechRecognition({ commands });
 
   useEffect(() => {
@@ -632,20 +634,22 @@ export default function ToolbarPlugin({ lang }: { lang?: string }) {
   }, [interimTranscript, finalTranscript, resetTranscript, editor]);
 
   const listenContinuously = async () => {
-    if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
-      return null;
-    }
-
-    if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    if (!browserSupportsSpeechRecognition) {
       console.warn(
         "Your browser does not support speech recognition software! Try Chrome desktop, maybe?"
       );
       return;
     }
+    if (!browserSupportsSpeechRecognition) {
+      return null;
+    }
     await SpeechRecognition.startListening({
       continuous: true,
       language: lang || "en-EN",
     });
+    if (!isMicrophoneAvailable) {
+      SpeechRecognition.abortListening();
+    }
   };
 
   const updateToolbar = useCallback(() => {
