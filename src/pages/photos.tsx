@@ -13,6 +13,7 @@ const Index: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <input type="file" accept="image/*" capture="environment" multiple />
+      <input type="file" accept="image/*" multiple />
     </div>
   );
 };
