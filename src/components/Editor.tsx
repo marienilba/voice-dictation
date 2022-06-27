@@ -18,6 +18,7 @@ import { editorConfig } from "./plugins/config";
 import { atomWithStorage } from "jotai/utils";
 import { AutoSavePlugin } from "./plugins/AutoSavePlugin";
 import { useAtom } from "jotai";
+import AudioTranscribePlugin from "./plugins/AudioTranscribePlugin";
 const initialEditorState = atomWithStorage("initialEditorState", null);
 
 const defaultState = {
@@ -52,6 +53,7 @@ export function Editor() {
         }}
       >
         <div className="w-full my-6 rounded-sm max-w-3xl p-1 text-black relative leading-5 font-normal text-left rounded-tl-lg">
+          <AudioTranscribePlugin />
           <ToolbarPlugin lang="fr-FR" />
           <div className="bg-gray-200 rounded-lg relative h-[400px]  ">
             <RichTextPlugin
