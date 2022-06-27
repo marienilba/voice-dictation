@@ -2,8 +2,14 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import Head from "next/head";
 import { Editor } from "../components/Editor";
-
+import { useEffect } from "react";
+import Sphinx from "pocketsphinx-web";
 const Index: NextPage = () => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    // const Sr = new Sphinx();
+    // console.log(Sr);
+  });
   return (
     <div className="w-screen h-screen flex flex-col">
       <Head>
