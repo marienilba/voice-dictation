@@ -43,12 +43,11 @@ const defaultState = {
 };
 export const Editor: React.FC<{ uaString: string }> = (props) => {
   const [EditorState] = useAtom(initialEditorState);
-  let ua: UserAgent;
-  if (props.uaString) {
-    ua = useUserAgent(props.uaString);
-  } else {
-    ua = useUserAgent(window.navigator.userAgent);
-  }
+  let ua = useUserAgent(
+    props.uaString ||
+      (typeof window === "undefined" ? "ssr" : window.navigator.userAgent)
+  );
+
   return (
     <div className="relative  w-full justify-center flex">
       <LexicalComposer
