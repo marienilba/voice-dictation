@@ -1,15 +1,9 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
 import Head from "next/head";
 import { Editor } from "../components/Editor";
-import { useEffect } from "react";
-import Sphinx from "pocketsphinx-web";
-const Index: NextPage = () => {
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    // const Sr = new Sphinx();
-    // console.log(Sr);
-  });
+
+const Index: NextPage<{ uaString: string }> = ({ uaString }) => {
   return (
     <div className="w-screen h-screen flex flex-col">
       <Head>
@@ -22,7 +16,7 @@ const Index: NextPage = () => {
       </Head>
 
       <div className="flex grow flex-col justify-center items-center">
-        <Editor />
+        <Editor uaString={uaString} />
       </div>
 
       <footer className="mb-4">
@@ -45,5 +39,11 @@ const Index: NextPage = () => {
     </div>
   );
 };
-
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  return {
+    props: {
+      uaString: req.headers["user-agent"],
+    },
+  };
+};
 export default Index;

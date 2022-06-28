@@ -19,6 +19,7 @@ import { atomWithStorage } from "jotai/utils";
 import { AutoSavePlugin } from "./plugins/AutoSavePlugin";
 import { useAtom } from "jotai";
 import AudioTranscribePlugin from "./plugins/AudioTranscribePlugin";
+import { UserAgent, useUserAgent } from "next-useragent";
 const initialEditorState = atomWithStorage("initialEditorState", null);
 
 const defaultState = {
@@ -40,8 +41,14 @@ const defaultState = {
     version: 1,
   },
 };
-export function Editor() {
+export const Editor: React.FC<{ uaString: string }> = (props) => {
   const [EditorState] = useAtom(initialEditorState);
+  let ua: UserAgent;
+  if (props.uaString) {
+    ua = useUserAgent(props.uaString);
+  } else {
+    ua = useUserAgent(window.navigator.userAgent);
+  }
   return (
     <div className="relative  w-full justify-center flex">
       <LexicalComposer
@@ -53,12 +60,12 @@ export function Editor() {
         }}
       >
         <div className="w-full my-6 rounded-sm max-w-3xl p-1 text-black relative leading-5 font-normal text-left rounded-tl-lg">
-          <AudioTranscribePlugin />
+          <AudioTranscribePlugin ua={ua} />
           <ToolbarPlugin lang="fr-FR" />
           <div className="bg-gray-200 rounded-lg relative h-[400px]  ">
             <RichTextPlugin
               contentEditable={
-                <ContentEditable className="min-h-[150px]  border-transparent focus:outline-none  focus:border-transparent max-h-[400px] overflow-auto h-max resize-none text-base caret-black relative  pt-3.5 px-2.5" />
+                <ContentEditable className="min-h-[150px]  h-full border-transparent focus:outline-none  focus:border-transparent max-h-[400px] overflow-auto resize-none text-base caret-black relative  pt-3.5 px-2.5" />
               }
               placeholder={
                 <div className="tex-black opacity-50 overflow-hidden absolute text-ellipsis top-4 left-2.5 text-base select-none inline-block pointer-events-none">
@@ -82,4 +89,4 @@ export function Editor() {
       </LexicalComposer>
     </div>
   );
-}
+};
